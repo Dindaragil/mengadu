@@ -414,23 +414,23 @@ header {
 }
 
 .Modern-Slider .item-1 .image {
-  background-image: url(../img/slide_1.jpg);
+  background-image: url(../img/aa.jpg);
 }
 
 .Modern-Slider .item-2 .image {
-  background-image: url(../img/slide_2.jpg);
+  background-image: url(../img/b.jpg);
 }
 
 .Modern-Slider .item-3 .image {
-  background-image: url(../img/slide_3.jpg);
+  background-image: url(../img/c.jpg);
 }
 
 .Modern-Slider .PrevArrow:before{content:'\f104';}
 
-.Modern-Slider .item .image {
+/* .Modern-Slider .item .image {
   animation: zoomin 12s ease-in-out infinite alternate;
   -webkit-animation: zoomin 12s ease-in-out infinite alternate;
-}
+} */
 
 .register .card{
   box-shadow: 5px 5px  rgba(0,0,0,0.2);
@@ -550,9 +550,7 @@ header {
   font-size: 13px;
   font-weight: 600;
   color: #9d0214;
-
   background-color: #fff;
-
   display: inline-block;
   height: 44px;
   line-height: 44px;
@@ -564,10 +562,98 @@ header {
 
 .login a:hover {
   color: #fff;
-
   background-color: #9d0214;
 
 }
+
+/* daftar */
+#aduan table {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  
+}
+#aduan a {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9d0214;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  padding: 0px 15px;
+}
+
+#aduan a:hover {
+  color: #fff;
+  background-color: #9d0214;
+  
+}
+
+#aduan .status{
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  padding: 0px 15px;
+  background-color: #fff;
+  color: #9d0214;
+}
+
+#aduan .status:hover{
+  color: #fff;
+  background-color: #9d0214;
+  
+}
+
+#aduan .delete {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  padding: 0px 15px;
+}
+
+#aduan .delete:hover {
+  background-color: #fff;
+  color: #9d0214;
+
+  
+}
+
+#aduan .card {
+  box-shadow: 5px 5px  rgba(0,0,0,0.2);
+}
+
+#aduan .card-body {
+  padding: 5%;
+}
+#aduan h5 {
+font-weight: bold;
+text-align: left;
+}
+#aduan p {
+  text-align: justify;
+}
+
+#aduan .card img{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: middle;
+  width: 100%;
+}
+
 
 
 @keyframes zoomin {

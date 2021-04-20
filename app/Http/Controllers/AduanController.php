@@ -16,7 +16,16 @@ class AduanController extends Controller
      */
     public function index()
     {
-        return view('aduan.index');
+        $aduan  = Aduan::all();
+        return view('petugas.index', compact('aduan'));
+        
+    }
+
+    public function detail($id)
+    {
+        $aduan = Aduan::where('id', $id)->get();
+        return view('aduan.detail', compact('aduan'));
+        
     }
 
     /**
@@ -105,6 +114,13 @@ class AduanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $aduan = Aduan::where('id', $id)->first();
+
+        if($aduan != null){
+            $aduan->delete();
+
+            return redirect('/aduan')->with('status', 'Berhasil menghapus aduan!');
+        }
+        return redirect('/kategori')->with('status', 'ID tidak ditemukan!');
     }
 }

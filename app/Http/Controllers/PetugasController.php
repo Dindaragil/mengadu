@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Aduan;
 
 use Illuminate\Http\Request;
 
@@ -11,11 +12,46 @@ class PetugasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
+    
+    public function diproses() 
+    {
+        $aduan  = Aduan::where('status', '=', 'diproses')->get();
+        return view('petugas.index', compact('aduan'));
+    }
+    
+    public function diterima() 
+    {
+        $aduan  = Aduan::where('status', '=', 'diterima')->get();
+        return view('petugas.index', compact('aduan'));
+    }
+    
+    public function ditolak() 
+    {
+        $aduan  = Aduan::where('status', '=', 'ditolak')->get();
+        return view('petugas.index', compact('aduan'));
+    }
+    
+    public function terima(Request $request, $id)
+    {
+        $aduan = Aduan::where('id', $id)->first();
+        $aduan->status = $request->status;
+        $aduan->update();
+        return redirect('/aduan');
+    }
+    
+    public function tolak(Request $request, $id)
+    {
+        $aduan = Aduan::where('id', $id)->first();
+        $aduan->status = $request->status;
+        $aduan->update();
+        return redirect('/aduan')->with('status', 'Sukses mengubah status');
+    }
+    
     public function index()
     {
-        //
+        return view('petugas.tanggapan');
     }
-
     /**
      * Show the form for creating a new resource.
      *

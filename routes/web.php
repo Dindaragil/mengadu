@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AduanController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\AuthController;
 
 /*
@@ -24,15 +26,34 @@ Route::get('login', 'AuthController@showFormLogin')->name('login');
 Route::post('login', 'AuthController@login');
 Route::get('register', 'AuthController@showFormRegister')->name('register');
 Route::post('register', 'AuthController@register');
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('home', 'HomeController@home')->name('home');
+// Route::group(['middleware' => 'auth'], function () {
+    
+    Route::get('home', 'HomeController@index')->name('home');
 
     //aduan
-    
-
-    //logout
-    Route::get('logout', 'AuthController@logout')->name('logout');
-});
-
+Route::get('/aduan', [AduanController::class, 'index']);
+Route::get('/aduan_detail/{id}', [AduanController::class, 'detail']);
 Route::get('/aduan_create', [AduanController::class, 'create']);
 Route::post('/aduan_store', [AduanController::class, 'store']);
+Route::delete('/aduan_destroy/{id}', [AduanController::class, 'destroy']);
+
+//admin
+Route::get('/aduan_tertunggu', [AdminController::class, 'tertunggu']);
+Route::get('/aduan_terproses', [AdminController::class, 'terproses']);
+Route::get('/aduan_terterima', [AdminController::class, 'terterima']);
+Route::get('/aduan_tertolak', [AdminController::class, 'tertolak']);
+Route::put('/aduan_proses/{id}', [AdminController::class, 'proses']);
+
+//petugas
+Route::get('/aduan_diproses', [PetugasController::class, 'diproses']);
+Route::get('/aduan_diterima', [PetugasController::class, 'diterima']);
+Route::put('/aduan_terima/{id}', [PetugasController::class, 'terima']);
+Route::put('/aduan_tolak/{id}', [PetugasController::class, 'tolak']);
+
+    
+    //logout
+    Route::get('logout', 'AuthController@logout')->name('logout');
+// });
+
+
+

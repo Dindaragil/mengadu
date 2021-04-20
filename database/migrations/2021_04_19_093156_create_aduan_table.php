@@ -20,7 +20,7 @@ class CreateAduanTable extends Migration
             $table->string('subjek');
             $table->longText('isi');
             $table->string('foto');
-            $table->enum('status',['0','diproses','selesai']);
+            $table->enum('status',['menunggu','diproses','diterima','ditolak']);
             $table->timestamps();
             
             $table->foreign('nik')->references('nik')->on('users');

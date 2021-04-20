@@ -46,30 +46,24 @@ https://templatemo.com/tm-518-sentra
             <div id="main-nav" class="collapse navbar-collapse">
                 <nav>
                     <ul class="nav navbar-nav">
-                        <li><a href="#top">Home</a></li>
+                        <li><a href="{{url('home')}}">Home</a></li>
+                        <li><a href="{{url('aduan_create')}}">Tulis Pengaduan</a></li>
                         <li><a href="#featured">Featured</a></li>
                         <li><a href="#projects">Recent Projects</a></li>
                         <li><a href="#video">Presentation</a></li>
                         <li><a href="#blog">Blog Entries</a></li>
-                        <li><a href="{{url('aduan_create')}}">Tulis Pengaduan</a></li>
                     </ul>
                 </nav>
             </div>
         </header>
 
-        <div class="sidebar-navigation hidde-sm hidden-xs">
+        <div class="sidebar-navigation hidde-sm hidden-xs" style="position: relative;">
             <div class="logo">
-                <a href="#">MENGADU</a>
+                <a href="{{url('home')}}">MENGADU</a>
             </div>
-            <nav>
+            <div style="margin-top: 100px;">
                 <ul>
-                    <li>
-                        <a href="#top">
-                            <span class="rect"></span>
-                            <span class="circle"></span>
-                            Home
-                        </a>
-                    </li>
+                    
                     <li>
                         <a href="#featured">
                             <span class="rect"></span>
@@ -99,21 +93,29 @@ https://templatemo.com/tm-518-sentra
                         </a>
                     </li>
                     <li>
-                        <a href="{{url('aduan_create')}}">
+                        <a href="{{url('home')}}">
+                            <span class="rect"></span>
+                            <span class="circle"></span>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/aduan_create')}}">
                             <span class="rect"></span>
                             <span class="circle"></span>
                             Tulis Pengaduan
                         </a>
                     </li>
+                    
                 </ul>
-            </nav>
-            <ul class="social-icons">
+</div>
+            <!-- <ul class="social-icons">
                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="#"><i class="fa fa-rss"></i></a></li>
                 <li><a href="#"><i class="fa fa-behance"></i></a></li>
-            </ul>
+            </ul> -->
         </div>
 
         @yield('content')
