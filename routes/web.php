@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AduanController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +16,23 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
+
+
+
+Route::get('/', 'AuthController@showFormLogin')->name('login');
+Route::get('login', 'AuthController@showFormLogin')->name('login');
+Route::post('login', 'AuthController@login');
+Route::get('register', 'AuthController@showFormRegister')->name('register');
+Route::post('register', 'AuthController@register');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('home', 'HomeController@home')->name('home');
+
+    //aduan
+    
+
+    //logout
+    Route::get('logout', 'AuthController@logout')->name('logout');
+});
+
+Route::get('/aduan_create', [AduanController::class, 'create']);
+Route::post('/aduan_store', [AduanController::class, 'store']);

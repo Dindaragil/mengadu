@@ -17,18 +17,18 @@ https://templatemo.com/tm-518-sentra
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-        <link rel="stylesheet" href="{{url('css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="css/bootstrap-theme.min.css {{url('')}}">
-        <link rel="stylesheet" href="{{url('css/fontAwesome.css')}}">
-        <link rel="stylesheet" href="{{url('css/light-box.css')}}">
-        <link rel="stylesheet" href="{{url('css/owl-carousel.css')}}">
-        <link rel="stylesheet" href="{{url('css/templatemo-style.css')}}">
+        <link rel="stylesheet" href="{{url('/css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url('/css/bootstrap-theme.min.css')}}">
+        <link rel="stylesheet" href="{{url('/css/fontAwesome.css')}}">
+        <link rel="stylesheet" href="{{url('/css/light-box.css')}}">
+        <link rel="stylesheet" href="{{url('/css/owl-carousel.css')}}">
+        <link rel="stylesheet" href="{{url('/css/templatemo-style.css')}}">
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
         <script src="https://kit.fontawesome.com/3685b669fe.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-        <script src="{{url('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
+        <script src="{{url('/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
     </head>
 
 <body>
@@ -51,7 +51,7 @@ https://templatemo.com/tm-518-sentra
                         <li><a href="#projects">Recent Projects</a></li>
                         <li><a href="#video">Presentation</a></li>
                         <li><a href="#blog">Blog Entries</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="{{url('aduan_create')}}">Tulis Pengaduan</a></li>
                     </ul>
                 </nav>
             </div>
@@ -99,10 +99,10 @@ https://templatemo.com/tm-518-sentra
                         </a>
                     </li>
                     <li>
-                        <a href="#contact">
+                        <a href="{{url('aduan_create')}}">
                             <span class="rect"></span>
                             <span class="circle"></span>
-                            Contact Us
+                            Tulis Pengaduan
                         </a>
                     </li>
                 </ul>
@@ -118,7 +118,7 @@ https://templatemo.com/tm-518-sentra
 
         @yield('content')
 
-            <section class="footer">
+            <section class="footer fixed-bottom">
                 <p>Copyright &copy; 2019 Mari Mengadu 
                 
                 . Design: TemplateMo</p>
@@ -128,10 +128,10 @@ https://templatemo.com/tm-518-sentra
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-    <script src="{{url('js/vendor/bootstrap.min.js')}}"></script>
+    <script src="{{url('/js/vendor/bootstrap.min.js')}}"></script>
     
-    <script src="{{url('js/plugins.js')}}"></script>
-    <script src="{{url('js/main.js')}}"></script>
+    <script src="{{url('/js/plugins.js')}}"></script>
+    <script src="{{url('/js/main.js')}}"></script>
 
     <script>
         // Hide Header on on scroll down

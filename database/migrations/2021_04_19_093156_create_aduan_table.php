@@ -17,6 +17,7 @@ class CreateAduanTable extends Migration
             $table->bigIncrements('id');
             $table->date('tanggal');
             $table->char('nik', 16);
+            $table->string('subjek');
             $table->longText('isi');
             $table->string('foto');
             $table->enum('status',['0','diproses','selesai']);

@@ -90,7 +90,7 @@ jQuery(document).ready(function($) {
         function updateNavigation(){
             contentSection.each(function(){
                 var sectionName = $(this).attr('id');
-                var navigationMatch = $('nav a[href="#' + sectionName + '"]');
+                var navigationMatch = $('nav a[href="' + sectionName + '"]');
                 if( ($(this).offset().top - $(window).height()/2 < $(window).scrollTop()) &&
                       ($(this).offset().top + $(this).height() - $(window).height()/2 > $(window).scrollTop()))
                     {
@@ -108,7 +108,7 @@ jQuery(document).ready(function($) {
         }
 
 
-        $('.button a[href*=#]').on('click', function(e) {
+        $('.button a[href*=]').on('click', function(e) {
           e.preventDefault();
           $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top -0 }, 500, 'linear');
         });

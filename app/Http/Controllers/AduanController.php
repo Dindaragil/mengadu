@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use App\Aduan;
+
 
 class AduanController extends Controller
 {
@@ -13,7 +16,7 @@ class AduanController extends Controller
      */
     public function index()
     {
-        //
+        return view('aduan.index');
     }
 
     /**
@@ -23,7 +26,7 @@ class AduanController extends Controller
      */
     public function create()
     {
-        //
+        return view('aduan.create');
     }
 
     /**
@@ -34,7 +37,30 @@ class AduanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if($request->foto) {
+            $gambar = $request->foto->getClientOriginalName() . '-' . time()
+            . '.' . $request->foto->extension();
+           $request->foto->move(public_path('image'), $gambar);
+        } else {
+            $gambar = null;
+        }
+
+        $aduan = new Aduan();
+        $aduan->nik = $request->nik;
+        $aduan->tanggal = $request->tanggal;
+        $aduan->subjek = $request->subjek;
+        $aduan->foto = $gambar;
+        $aduan->isi = $request->isi;
+        $simpan = $aduan->save();
+
+        if($simpan){
+            Session::flash('success', 'Pengaduan berhasil dikirim!');
+            return redirect('/aduan');
+        } else {
+            Session::flash('errors', ['' => 'Gagal mengirim pengaduan. Mohon coba lagi!']);
+            return redirect('/aduan');
+        }
+
     }
 
     /**
