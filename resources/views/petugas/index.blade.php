@@ -4,7 +4,7 @@
 
 @section('content')
 
-                <section id="aduan" class="content-section" style="padding-left: 25%; padding-right: 5%">
+                <section id="aduan" class="content-section">
                 
                 <div id="aduan-content">
                     <div class="section-heading">
@@ -13,19 +13,11 @@
                         <br>Anda dapat melihat apakah pengaduan anda sudah diproses atau sudah selesai diajukan.</p>
                     </div>
                     <div class="section-content">
-                    @if(session('errors'))
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                Something it's wrong:
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+                            @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                {{ Session::get('success') }}
+                            </div>
+                            @endif
             <table class="table table-bordered">
   <thead class="table-dark">
   <td>#</td>

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use App\Aduan;
+use App\User;
 
 
 class AduanController extends Controller
@@ -16,9 +20,17 @@ class AduanController extends Controller
      */
     public function index()
     {
-        $aduan  = Aduan::all();
+        $aduan  = DB::table('aduan')
+                ->select('users.nik', 'aduan.id', 'aduan.tanggal', 'aduan.subjek', 'aduan.isi', 'aduan.foto', 'aduan.status')
+                ->join('users', 'users.nik', '=', 'aduan.nik')
+                ->get();
         return view('petugas.index', compact('aduan'));
         
+    }
+
+    public function aduanSaya() {
+        $aduan = aduan::where('nik', '=', Auth::user()->nik)->get();
+        return view('aduan.index', compact('merchant'));
     }
 
     public function detail($id)
@@ -33,9 +45,10 @@ class AduanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($nik)
     {
-        return view('aduan.create');
+        $aduan = User::where(Auth::user()->nik)->get();
+        return view('aduan.create', compact('aduan'));
     }
 
     /**
@@ -46,13 +59,29 @@ class AduanController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->foto) {
-            $gambar = $request->foto->getClientOriginalName() . '-' . time()
-            . '.' . $request->foto->extension();
-           $request->foto->move(public_path('image'), $gambar);
-        } else {
-            $gambar = null;
+        $rules = [
+            'tanggal' => 'required',
+            'subjek' => 'required',
+            'isi' => 'required',
+            'foto' => 'required|mimetypes:image/jpeg,image/png,image/jpg'
+        ];
+        $messages = [
+            'tanggal.required' => 'Tanggal wajib diisi',
+            'subjek.required' => 'Subjek wajib diisi',
+            'isi.required' => 'Isi laporan wajib diisi',
+            'foto.required' => 'Foto wajib dilampirkan',
+            'foto.mimes' => 'Maaf, format foto tidak didukung'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
+        
+        $gambar = $request->foto->getClientOriginalName() . '-' . time() . '.' . $request->foto->extension();
+        $request->foto->move(public_path('image'), $gambar);
+        
 
         $aduan = new Aduan();
         $aduan->nik = $request->nik;
@@ -63,11 +92,11 @@ class AduanController extends Controller
         $simpan = $aduan->save();
 
         if($simpan){
-            Session::flash('success', 'Pengaduan berhasil dikirim!');
-            return redirect('/aduan');
+            Session::flash('success', 'Pengaduan berhasil dibuat!');
+            return redirect('/aduan_saya');
         } else {
             Session::flash('errors', ['' => 'Gagal mengirim pengaduan. Mohon coba lagi!']);
-            return redirect('/aduan');
+            return redirect('/aduan_saya');
         }
 
     }

@@ -23,6 +23,7 @@ p {
 
 .content-section {
   padding-top: 80px;
+  padding-left: 25%;
   position: relative;
   width: 100%;
   display: inline-block;
@@ -215,7 +216,7 @@ header {
 
 .sidebar-navigation nav {
   position: relative;
-  top: 40%;
+  top: 25%;
   left: 60%;
   -webkit-transform: translateX(-60%) translateY(-60%);
   -moz-transform: translateX(-60%) translateY(-60%);
@@ -227,7 +228,7 @@ header {
 .sidebar-navigation ul {
   margin-left: 45px;
   list-style: none;
-  padding: 0;
+  padding-top: 60%;
 }
 .sidebar-navigation li{
   padding: 10px 0;
@@ -236,7 +237,7 @@ header {
   display: inline-block;
   position:relative;
 }
-.sidebar-navigation nav a{
+.sidebar-navigation .menu{
   display: inline-block;
   color: #fff;
   margin-top: 5px;
@@ -245,6 +246,11 @@ header {
   letter-spacing: 0.5px;
   text-transform: capitalize;
 }
+
+.menu{
+position: relative;
+}
+
 .circle{
   margin-right: 5px;
   height: 10px;
@@ -256,16 +262,7 @@ header {
   border: 2px solid #fff;
   transition: all 0.3s;
 }
-.rect{
-  height: 1px;
-  width: 0px;
-  left: 0;
-  bottom: 5.5px;
-  background-color: #fff;
-  -webkit-transition: -webkit-transform 0.1s, width 0.6s;
-  -moz-transition: -webkit-transform 0.1s, width 0.6s;
-  transition: transform 0.1s, width 0.6s;
-}
+
 .sidebar-navigation nav a:focus {
   color: #fff;
 }
@@ -275,10 +272,8 @@ header {
 .sidebar-navigation nav a:hover span, nav .active-section span{
   background-color: #ddd;
 }
-.sidebar-navigation nav .active-section .rect{
-  width: 30px;
-}
-.sidebar-navigation nav .active-section .circle{
+
+.sidebar-navigation nav .active-section span .circle{
   background-color: #fff;
 }
 
@@ -315,11 +310,11 @@ header {
 /* Slider Style */
 
 .slider .content-section {
-  padding-top: 0px;
+  padding: 0%;
   min-width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   text-align: center;
 }
 
@@ -566,7 +561,7 @@ header {
 
 }
 
-/* daftar */
+/* aduan */
 #aduan table {
   font-size: 13px;
   font-weight: 600;
@@ -591,6 +586,23 @@ header {
   background-color: #9d0214;
   
 }
+#aduan button.btn.delete {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  text-decoration: none;
+  transition: all 0.3s;
+  height: 30px;
+  width: 80px;
+  display: inline-block;
+  padding: 0px 15px;
+}
+
+#aduan .delete:hover {
+  background-color: #fff;
+  color: #9d0214;
+}
+
 
 #aduan .status{
   font-size: 13px;
@@ -612,24 +624,6 @@ header {
   
 }
 
-#aduan .delete {
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.25px;
-  text-decoration: none;
-  transition: all 0.3s;
-  height: 30px;
-  line-height: 30px;
-  display: inline-block;
-  padding: 0px 15px;
-}
-
-#aduan .delete:hover {
-  background-color: #fff;
-  color: #9d0214;
-
-  
-}
 
 #aduan .card {
   box-shadow: 5px 5px  rgba(0,0,0,0.2);
@@ -652,6 +646,20 @@ text-align: left;
   margin-right: auto;
   vertical-align: middle;
   width: 100%;
+}
+
+#aduan .kembali{
+  float: right;
+  margin-bottom: 5%;
+  margin-top: 5%;
+  color: #fff;
+  background-color: #9d0214;
+}
+
+#aduan .kembali:hover {
+  color: #9d0214;
+  background-color: #fff;
+
 }
 
 
@@ -762,7 +770,8 @@ text-align: left;
 
 #featured .item .image img {
   width: 100%;
-  overflow: hidden;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 #featured .item .image .featured-button a {
@@ -1125,6 +1134,8 @@ text-align: left;
   text-decoration: none;
   transition: all 0.3s;
 }
+
+
 
 #aduan button:hover {
   color: #232323;

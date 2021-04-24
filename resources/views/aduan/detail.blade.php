@@ -27,7 +27,7 @@
         <p class="card-text"><small class="text-muted">{{$adu->tanggal}}</small></p>
         <h5 class="card-title h3">{{$adu->subjek}}</h5>
         <p class="card-text">{{$adu->isi}}</p>
-        <a href="{{url('/aduan')}}">Kembali</a>
+        <a href="{{url('/aduan')}}" class="kembali">Kembali</a>
       </div>
     </div>
   </div>

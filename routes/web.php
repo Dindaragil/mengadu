@@ -19,21 +19,21 @@ use App\Http\Controllers\AuthController;
 */
 
 
+Route::get('/', [AuthController::class, 'showFormLogin'])->name('login');
+Route::get('login', [AuthController::class, 'showFormLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'showFormRegister'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
 
-
-Route::get('/', 'AuthController@showFormLogin')->name('login');
-Route::get('login', 'AuthController@showFormLogin')->name('login');
-Route::post('login', 'AuthController@login');
-Route::get('register', 'AuthController@showFormRegister')->name('register');
-Route::post('register', 'AuthController@register');
-// Route::group(['middleware' => 'auth'], function () {
     
-    Route::get('home', 'HomeController@index')->name('home');
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
     //aduan
 Route::get('/aduan', [AduanController::class, 'index']);
+Route::get('/aduan_saya', [AduanController::class, 'aduanSaya']);
 Route::get('/aduan_detail/{id}', [AduanController::class, 'detail']);
-Route::get('/aduan_create', [AduanController::class, 'create']);
+Route::get('/aduan_create/{nik}', [AduanController::class, 'create']);
 Route::post('/aduan_store', [AduanController::class, 'store']);
 Route::delete('/aduan_destroy/{id}', [AduanController::class, 'destroy']);
 
@@ -51,9 +51,7 @@ Route::put('/aduan_terima/{id}', [PetugasController::class, 'terima']);
 Route::put('/aduan_tolak/{id}', [PetugasController::class, 'tolak']);
 
     
-    //logout
-    Route::get('logout', 'AuthController@logout')->name('logout');
-// });
+
 
 
 

@@ -23,12 +23,13 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $rules = [
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required'
         ];
 
         $messages = [
             'email.required' => 'Email is required',
+            'email.email' => 'Email is invalid',
             'password.required' => 'Password is required'
         ];
 
@@ -46,7 +47,6 @@ class AuthController extends Controller
         Auth::attempt($data);
         if (Auth::check()) {
             return redirect()->route('home');
-
         } else {
             Session::flash('error', 'Invalid Email or Password');
             return redirect()->route('login');
@@ -63,7 +63,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $rules = [
-            'nik'                   => 'required|unique:users',
+            'nik'                   => 'required|unique:users|min:16|max:16',
             'nama'                  => 'required',
             'email'                 => 'required|unique:users,email',
             'password'              => 'required|confirmed',
@@ -74,11 +74,14 @@ class AuthController extends Controller
         $messages = [
             'nik.required'          => 'NIK wajib diisi',
             'nik.unique'            => 'NIK sudah digunakan',
+            'nik.min'               => 'NIK tidak valid',
+            'nik.max'               => 'NIK tidak valid',
             'nama.required'         => 'Nama wajib diisi',
             'email.required'        => 'Email wajib diisi',
             'email.unique'          => 'Email sudah digunakan',
             'password.required'     => 'Password wajib diisi',
             'password.confirmed'    => 'Password tidak sama',
+            'telp.required'         => 'Nomor telepon wajib diisi'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
