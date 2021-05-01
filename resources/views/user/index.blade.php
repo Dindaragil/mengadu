@@ -1,16 +1,16 @@
 @extends('layout/main')
 
-@section('title', 'Daftar Petugas | Mengadu | Pelayanan Pengaduan Masyarakat')
+@section('title', 'Daftar user | Mengadu | Pelayanan Pengaduan Masyarakat')
 
 @section('content')
 
-<section id="petugas" class="content-section">
+<section id="user" class="content-section">
 
-    <div id="petugas-content">
+    <div id="user-content">
         <div class="section-heading">
-            <h1>Daftar<br><em>Petugas</em></h1>
-            <p>Lihat daftar petugas di sini.
-                <br>Anda dapat mengolah data dari petugas apabila dibutuhkan.
+            <h1>Daftar<br><em>user</em></h1>
+            <p>Lihat daftar user di sini.
+                <br>Anda dapat mengolah data dari user apabila dibutuhkan.
             </p>
         </div>
         <div class="section-content">
@@ -20,7 +20,7 @@
             </div>
             @endif
             <div class="mb-2">
-                <a href="/petugas_create" class="btn btn-outline-danger">Add New</a>
+                <a href="/user_create" class="btn btn-outline-danger">Add New</a>
             </div>
             <table class="table table-bordered">
                 <thead class="table-dark">
@@ -32,17 +32,17 @@
                 </thead>
                 <tbody>
                 <tbody>
-                    @foreach( $petugas as $pet )
+                    @foreach( $user as $pet )
                     <tr>
                         <td scope="row">{{$loop->iteration}}</td>
                         <td>{{$pet->nama}}</td>
                         <td>{{$pet->email}}</td>
                         <td>{{$pet->telp}}</td>
                         <td>
-                            <form action="{{ url('/petugas_destroy', $pet->id )}}" method="post">
+                            <form action="{{ url('/user_destroy', $pet->id )}}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a href="{{url('/petugas_edit', $pet->id)}}">Ubah</a>
+                                <a href="{{url('/user_edit', $pet->id)}}">Ubah</a>
                                 <button type="submit" class="btn delete" onclick="return confirm('Are you Sure?')">Hapus</button>
                             </form>
                         </td>

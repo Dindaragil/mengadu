@@ -15,15 +15,15 @@ class CreateAduanTable extends Migration
     {
         Schema::create('aduan', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('id_user');
             $table->date('tanggal');
-            $table->char('nik', 16);
             $table->string('subjek');
             $table->longText('isi');
             $table->string('foto');
             $table->enum('status',['menunggu','diproses','diterima','ditolak']);
             $table->timestamps();
-            
-            $table->foreign('nik')->references('nik')->on('users');
+
+            $table->foreign('id_user')->references('id')->on('users');
         });
     }
 

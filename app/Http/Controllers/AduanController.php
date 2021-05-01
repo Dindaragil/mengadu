@@ -13,31 +13,42 @@ use App\User;
 
 class AduanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index($limit = NULL, $offset = NULL)
     {
-        $aduan  = DB::table('aduan')
-                ->select('users.nik', 'aduan.id', 'aduan.tanggal', 'aduan.subjek', 'aduan.isi', 'aduan.foto', 'aduan.status')
-                ->join('users', 'users.nik', '=', 'aduan.nik')
-                ->get();
-        return view('petugas.index', compact('aduan'));
-        
+        $aduan = DB::table('aduan')
+               ->select('users.id as id_user', 'users.nik', 'users.nama', 'aduan.id as id_aduan', 'aduan.tanggal', 'aduan.subjek', 'aduan.isi', 'aduan.foto', 'aduan.status')
+               ->join('users', 'users.id', '=', 'aduan.id_user');
+
+        if(User::where('type', '=', 'user')){
+            $aduan = Aduan::where('id_user', Session::get('id'))->get();
+
+            if($limit == NULL && $offset == NULL){
+                $aduan = Aduan::where('id_user', Session::get('id'))
+                ->orderBy('tanggal', 'desc')->with('tanggapan', 'user')->get();
+            } else {
+                $aduan = Aduan::where('id_user', Session::get('id'))
+                ->orderBy('tanggal', 'desc')->with('tanggapan', 'user')->take($limit)->skip($offset)->get();
+            }
+        } else {
+            $data = Aduan::count();
+
+            if($limit == NULL && $offset == NULL){
+                $aduan = Aduan::select('tanggapan.isi')->orderBy('tanggal', 'desc')
+                ->with('tanggapan', 'user')->take($limit)->skip($offset)->get();
+            }
+        }
+
+        return view('aduan.aduan', compact('aduan'));
+
     }
 
-    public function aduanSaya() {
-        $aduan = aduan::where('nik', '=', Auth::user()->nik)->get();
-        return view('aduan.index', compact('merchant'));
-    }
 
     public function detail($id)
     {
         $aduan = Aduan::where('id', $id)->get();
         return view('aduan.detail', compact('aduan'));
-        
+
     }
 
     /**
@@ -45,18 +56,18 @@ class AduanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($nik)
+    public function create()
     {
-        $aduan = User::where(Auth::user()->nik)->get();
+        $aduan = User::where('id_user', Session::get('id'));
         return view('aduan.create', compact('aduan'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function show($id)
+    {
+        $aduan = Aduan::where('id', $id)->with(['tanggapan'])->get();
+        return view('aduan.aduan', compact('aduan'));
+    }
+
     public function store(Request $request)
     {
         $rules = [
@@ -78,13 +89,13 @@ class AduanController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
-        
+
         $gambar = $request->foto->getClientOriginalName() . '-' . time() . '.' . $request->foto->extension();
         $request->foto->move(public_path('image'), $gambar);
-        
+
 
         $aduan = new Aduan();
-        $aduan->nik = $request->nik;
+        $aduan->id_user = Session::get('id');
         $aduan->tanggal = $request->tanggal;
         $aduan->subjek = $request->subjek;
         $aduan->foto = $gambar;
@@ -93,54 +104,35 @@ class AduanController extends Controller
 
         if($simpan){
             Session::flash('success', 'Pengaduan berhasil dibuat!');
-            return redirect('/aduan_saya');
+            return redirect('/aduan');
         } else {
             Session::flash('errors', ['' => 'Gagal mengirim pengaduan. Mohon coba lagi!']);
-            return redirect('/aduan_saya');
+            return redirect('/aduan');
         }
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
-        //
+        $aduan = Aduan::where('id', $id)->first();
+        $aduan->status = $request->status;
+        $simpan = $aduan->save();
+
+        if($simpan){
+            Session::flash('success', 'Status berhasil diubah');
+            return redirect('/aduan');
+        } else {
+            Session::flash('errors', ['' => 'Pengubahan status gagal. Mohon coba lagi!']);
+            return redirect('/aduan');
+        }
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $aduan = Aduan::where('id', $id)->first();

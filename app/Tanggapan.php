@@ -11,14 +11,14 @@ class Tanggapan extends Model
     protected $primary_key = 'id';
     public $incrementing = false;
 
-    public function aduan() 
+    public function aduan()
     {
         return $this->belongsTo('App\Aduan', 'id_aduan','id');
     }
 
-    public function petugas() 
+    public function user()
     {
-        return $this->belongsTo('App\Petugas', 'id_petugas','id');
+        return $this->belongsTo('App\User', 'id_user','id');
     }
 }
 

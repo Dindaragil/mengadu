@@ -15,7 +15,7 @@ class CreateTanggapanTable extends Migration
     {
         Schema::create('tanggapan', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->foreignId('id_petugas')->references('id')->on('petugas');
+            $table->foreignId('id_user')->references('id')->on('users');
             $table->foreignId('id_aduan')->references('id')->on('aduan');
             $table->date('tanggal');
             $table->string('subjek');

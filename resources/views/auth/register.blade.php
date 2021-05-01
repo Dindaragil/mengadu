@@ -34,7 +34,7 @@
                                 </ul>
                             </div>
                             @endif
-                            
+
                             <div class="mb-3">
                                 <label for="nik" class="form-label">
                                     <p>NIK</p>
@@ -63,7 +63,7 @@
                                 <label for="confirmPassword" class="form-label">
                                     <p>Konfirmasi Password</p>
                                 </label>
-                                <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="Tulis kembali password" required>
+                                <input type="password" name="password_confirmation" class="form-control" id="confirmPassword" placeholder="Tulis ulang password" required>
                             </div>
                             <div class="mb-3">
                                 <label for="telp" class="form-label">
@@ -71,8 +71,8 @@
                                 </label>
                                 <input type="text" class="form-control" id="telp" name="telp" placeholder="Contoh : 08xxxxxxxxxx" required>
                             </div>
-                            
-                            
+
+
 
                             <button type="submit" class="btn">Daftar</button>
                         </form>

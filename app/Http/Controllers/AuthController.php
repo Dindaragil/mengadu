@@ -14,13 +14,13 @@ class AuthController extends Controller
 {
     public function showFormLogin()
     {
-        if (Auth::check()) {
-            return redirect()->route('home');
-        }
+        // if (Auth::check()) {
+        //     return redirect()->route('home');
+        // }
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function cek_login(Request $request)
     {
         $rules = [
             'email' => 'required|email',
@@ -39,18 +39,34 @@ class AuthController extends Controller
             return redirect()->back()->withErrors($validator)->withInput($request->all);
         }
 
-        $data = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ];
+        $proses = User::where('email', $request->email)
+                      ->where('password', md5($request->password));
 
-        Auth::attempt($data);
-        if (Auth::check()) {
-            return redirect()->route('home');
+        if($proses->count()>0){
+            $data = $proses->first();
+            Session::put('id', $data->id);
+            Session::put('nama', $data->nama);
+            Session::put('email', $data->email);
+            Session::put('telp', $data->telp);
+            Session::put('type', $data->type);
+            Session::put('login_status', true);
+            return redirect('home');
         } else {
-            Session::flash('error', 'Invalid Email or Password');
-            return redirect()->route('login');
+            Session::flash('error', 'Email atau password salah');
+            return redirect('login');
         }
+        // $data = [
+        //     'email' => $request->input('email'),
+        //     'password' => Hash::make($request->password),
+        // ];
+
+        // Auth::attempt($data);
+        // if (Auth::check()) {
+        //     return redirect()->route('home');
+        // } else {
+        //     Session::flash('error', 'Invalid Email or Password');
+        //     return redirect()->route('login');
+        // }
 
 
     }
@@ -68,7 +84,7 @@ class AuthController extends Controller
             'email'                 => 'required|unique:users,email',
             'password'              => 'required|confirmed',
             'telp'                  => 'required',
-            
+
         ];
 
         $messages = [
@@ -94,8 +110,9 @@ class AuthController extends Controller
         $users->nik = ($request->nik);
         $users->nama = ($request->nama);
         $users->email= strtolower($request->email);
-        $users->password = Hash::make($request->password);
+        $users->password = md5($request->password);
         $users->telp = ($request->telp);
+        $users->type = 'user';
         $simpan = $users->save();
 
         if($simpan){
@@ -109,7 +126,7 @@ class AuthController extends Controller
 
     public function logout()
     {
-        Auth::logout();
+        Session::flush();
         return redirect()->route('login');
     }
 }

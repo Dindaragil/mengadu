@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url('/css/templatemo-style.css')}}">
-
 </head>
 
 <body>
@@ -15,14 +14,14 @@
         <div class="row">
 
             <div class="col-md-3"></div>
-            <div class="col-md-6" >
-                
-                <div class="card text-center">
+            <div class="col-md-6">
+
+                <div class="card text-center border-light">
                     <div class="card-header">
                         <h4>Masuk</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('login') }}" method="post">
+                        <form action="{{ url('login_cek') }}" method="post">
                             @csrf
                             @if(session('errors'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -42,7 +41,7 @@
                                 {{ Session::get('success') }}
                             </div>
                             @endif
-    
+
                             <div class="mb-3">
                                 <label for="inputEmail1" class="form-label">
                                     <p>Email</p>

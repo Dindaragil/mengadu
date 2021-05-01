@@ -1,19 +1,18 @@
 @extends('layout/main')
 
-@section('title', 'Tulis Pengaduan | Mengadu | Pelayanan Pengaduan Masyarakat')
+@section('title', 'Tambah Petugas | Mengadu | Pelayanan Pengaduan Masyarakat')
 
 @section('content')
 
                 <section id="aduan" class="content-section">
                 <div id="aduan-content">
                     <div class="section-heading">
-                    <h1>Tulis<br><em>Pengaduan</em></h1>
-                        <p>Tulis pengaduan anda disini.
-                        <br>Pastikan pengaduan anda singkat, padat, dan jelas agar mudah dipahami dan cepat diproses.</p>
+                    <h1>Tambah<br><em>Petugas</em></h1>
+                        <p>Pastikan data petugas yang ditambahkan sudah benar dan sesuai.</p>
 
                     </div>
                     <div class="section-content">
-                        <form id="aduan" action="{{url('/aduan_store')}}" method="post" enctype="multipart/form-data">
+                        <form id="aduan" action="{{url('/petugas_store')}}" method="post">
                         @csrf
                         @if(session('errors'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -29,36 +28,36 @@
             </div>
             @endif
                             <div class="row">
-                            <div class="col-md-12">
-                                <label for="id_user" class="h4">ID User</label>
-                                <fieldset>
-                                    <input name="id_user" type="text" class="form-control" id="nik" value="{{Session::get('id')}}" readonly>
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-6">
-                                 <label for="tanggal" class="h4">Tanggal</label>
+
+                                <div class="col-md-12">
+                                 <label for="nama" class="h4">Nama</label>
                                   <fieldset>
-                                    <input name="tanggal" type="date" class="form-control" id="tanggal" placeholder="Masukkan tanggal" required="">
-                                  </fieldset>
-                                </div>
-                                <div class="col-md-6">
-                                <label for="foto" class="h4">Foto</label>
-                                <fieldset>
-                                    <input name="foto" type="file" class="form-control" id="foto" placeholder="Masukkan Foto" required>
+                                    <input name="nama" type="text" class="form-control" id="nama" placeholder="Masukkan nama" required="">
                                   </fieldset>
                                 </div>
                                 <div class="col-md-12">
-                                <label for="subjek" class="h4">Subjek</label>
+                                <label for="telp" class="h4">Nomor Telepon</label>
                                 <fieldset>
-                                    <input name="subjek" type="text" class="form-control" id="subject" placeholder="Masukkan Subjek" required="">
+                                    <input name="telp" type="text" class="form-control" id="telp" placeholder="Contoh : 08xxxxxxxxxx" required>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-12">
+                                <label for="email" class="h4">Email</label>
+                                <fieldset>
+                                    <input name="email" type="text" class="form-control" id="subject" placeholder="Masukkan email" required="">
                                   </fieldset>
                                 </div>
 
-                                <div class="col-md-12">
-                                <label for="isi" class="h4">Isi Pengaduan</label>
-
+                                <div class="col-md-6">
+                                <label for="password" class="h4">Password</label>
                                   <fieldset>
-                                    <textarea name="isi" rows="6" class="form-control" id="isi" placeholder="Tulis Isi Pengaduan" required=""></textarea>
+                                    <input name="password" type="password" class="form-control" id="password" placeholder="Buat password" required=""></input>
+                                  </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                <label for="confirmPassword" class="h4">Konfirmasi Password</label>
+                                  <fieldset>
+                                    <input name="password_confirmation" type="password" class="form-control" id="confirmPassword" placeholder="Tulis ulang password" required=""></input>
                                   </fieldset>
                                 </div>
 
