@@ -9,46 +9,6 @@ use Illuminate\Http\Request;
 
 class PetugasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
-    // public function diproses()
-    // {
-    //     $aduan  = Aduan::where('status', '=', 'diproses')->get();
-    //     return view('petugas.index', compact('aduan'));
-    // }
-
-    // public function diterima()
-    // {
-    //     $aduan  = Aduan::where('status', '=', 'diterima')->get();
-    //     return view('petugas.index', compact('aduan'));
-    // }
-
-    // public function ditolak()
-    // {
-    //     $aduan  = Aduan::where('status', '=', 'ditolak')->get();
-    //     return view('petugas.index', compact('aduan'));
-    // }
-
-    // public function terima(Request $request, $id)
-    // {
-    //     $aduan = Aduan::where('id', $id)->first();
-    //     $aduan->status = $request->status;
-    //     $aduan->update();
-    //     return redirect('/aduan');
-    // }
-
-    // public function tolak(Request $request, $id)
-    // {
-    //     $aduan = Aduan::where('id', $id)->first();
-    //     $aduan->status = $request->status;
-    //     $aduan->update();
-    //     return redirect('/aduan')->with('status', 'Sukses mengubah status');
-    // }
 
     public function index()
     {
@@ -147,11 +107,11 @@ class PetugasController extends Controller
             'email' => 'required'
         ]);
 
-        $users = User::where('id', $id)->first();
-        $users->nama = $request->nama;
-        $users->email= $request->email;
-        $users->telp = $request->telp;
-        $simpan = $users->save();
+        $petugas = User::where('id', $id)->first();
+        $petugas->nama = $request->nama;
+        $petugas->email= $request->email;
+        $petugas->telp = $request->telp;
+        $simpan = $petugas->save();
 
         if($simpan){
             Session::flash('success', 'Berhasil mengubah data petugas');

@@ -37,12 +37,10 @@ Route::post('/aduan_store', [AduanController::class, 'store']);
 Route::delete('/aduan_destroy/{id}', [AduanController::class, 'destroy']);
 
 //admin
-Route::get('/aduan_tertunggu', [AdminController::class, 'tertunggu']);
-Route::get('/aduan_terproses', [AdminController::class, 'terproses']);
-Route::get('/aduan_terterima', [AdminController::class, 'terterima']);
-Route::get('/aduan_tertolak', [AdminController::class, 'tertolak']);
-Route::put('/aduan_proses/{id}', [AdminController::class, 'proses']);
-Route::put('/aduan_update/{id}', [AduanController::class, 'updateStatus']);
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin_edit/{id}', [AdminController::class, 'edit']);
+Route::put('/admin_update/{id}', [AdminController::class, 'update']);
+Route::delete('/admin_destroy/{id}', [AdminController::class, 'destroy']);
 
 //petugas
 Route::get('/petugas', [PetugasController::class, 'index']);
@@ -54,9 +52,7 @@ Route::delete('/petugas_destroy/{id}', [PetugasController::class, 'destroy']);
 
 //user
 Route::get('/user', [UserController::class, 'index']);
-Route::get('/user_create', [UserController::class, 'create']);
 Route::get('/user_edit/{id}', [UserController::class, 'edit']);
-Route::post('/user_store', [UserController::class, 'store']);
 Route::put('/user_update/{id}', [UserController::class, 'update']);
 Route::delete('/user_destroy/{id}', [UserController::class, 'destroy']);
 

@@ -1,6 +1,6 @@
 @extends('layout/main')
 
-@section('title', 'Daftar User | Mengadu | Pelayanan Pengaduan Masyarakat')
+@section('title', 'Daftar Admin | Mengadu | Pelayanan Pengaduan Masyarakat')
 
 @section('content')
 
@@ -8,9 +8,9 @@
 
     <div id="aduan-content">
         <div class="section-heading">
-            <h1>Daftar<br><em>User</em></h1>
-            <p>Lihat daftar user di sini.
-                <br>Anda dapat mengubah data dari user apabila dibutuhkan.
+            <h1>Daftar<br><em>Admin</em></h1>
+            <p>Lihat daftar petugas di sini.
+                <br>Anda dapat mengolah data admin apabila dibutuhkan.
             </p>
         </div>
         <div class="section-content">
@@ -19,11 +19,9 @@
                 {{ Session::get('success') }}
             </div>
             @endif
-        
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <td>#</td>
-                    <td>NIK</td>
                     <td>Nama</td>
                     <td>Email</td>
                     <td>Telepon</td>
@@ -31,18 +29,17 @@
                 </thead>
                 <tbody>
                 <tbody>
-                    @foreach( $users as $us )
+                    @foreach( $admin as $ad )
                     <tr>
                         <td scope="row">{{$loop->iteration}}</td>
-                        <td>{{$us->nik}}</td>
-                        <td>{{$us->nama}}</td>
-                        <td>{{$us->email}}</td>
-                        <td>{{$us->telp}}</td>
+                        <td>{{$ad->nama}}</td>
+                        <td>{{$ad->email}}</td>
+                        <td>{{$ad->telp}}</td>
                         <td>
-                            <form action="{{ url('/user_destroy', $us->id )}}" method="post">
+                            <form action="{{ url('/admin_destroy', $ad->id )}}" method="post">
                                 @csrf
                                 @method('delete')
-                                <a href="{{url('/user_edit', $us->id)}}">Ubah</a>
+                                <a href="{{url('/admin_edit', $ad->id)}}">Ubah</a>
                                 <button type="submit" class="btn delete" onclick="return confirm('Are you Sure?')">Hapus</button>
                             </form>
                         </td>

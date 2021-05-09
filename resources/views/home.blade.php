@@ -30,7 +30,6 @@
                         <div>
                         <h1>Layanan Pengaduan<br>Online Masyarakat</h1>
                           <p>Tidak perlu datang ke instansi terkait untuk menyampaikan keluhan.</p>
-                          
                           <div class="white-button button">
                               <a href="{{url('/aduan_create')}}">Tulis Aduan</a>
                           </div>
@@ -47,7 +46,6 @@
                         <div>
                         <h1>Layanan Pengaduan<br>Online Masyarakat</h1>
                           <p>Layanan diproses dengan cepat, aman, dan terjamin.</p>
-                          
                           <div class="white-button button">
                               <a href="{{url('/aduan_create')}}">Tulis Aduan</a>
                           </div>

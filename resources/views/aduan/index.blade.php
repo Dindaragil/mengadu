@@ -4,12 +4,12 @@
 
 @section('content')
 
-                <section id="aduan" class="content-section" style="padding-left: 25%; padding-right: 5%">
-                
+                <section id="aduan" class="content-section" >
+
                 <div id="aduan-content">
                     <div class="section-heading">
                     <h1>Daftar<br><em>Pengaduan</em></h1>
-                        <p>Lihat daftar pengaduan anda di sini. 
+                        <p>Lihat daftar pengaduan anda di sini.
                         <br>Anda dapat melihat apakah pengaduan anda sudah diproses atau sudah selesai diajukan.</p>
                     </div>
                     <div class="section-content">
@@ -29,6 +29,8 @@
             <table class="table table-bordered table-hover">
   <thead class="table-dark">
   <td>#</td>
+  <td>NIK</td>
+  <td>Nama</td>
   <td>Tanggal</td>
   <td>Subjek</td>
   <td>Status</td>
@@ -39,11 +41,13 @@
                 @foreach( $aduan as $adu )
                 <tr>
                     <td scope="row">{{$loop->iteration}}</td>
+                    <td>{{$adu->nik}}</td>
+                    <td>{{$adu->nama}}</td>
                     <td>{{$adu->tanggal}}</td>
                     <td>{{$adu->subjek}}</td>
                     <td>{{$adu->status}}</td>
                     <td><a href="{{url('/aduan_detail', $adu->id)}}">Detail</a></td>
-                    
+
                 </tr>
                 @endforeach
             </tbody>
@@ -52,5 +56,5 @@
                     </div>
                 </div>
             </section>
-               
+
 @endsection

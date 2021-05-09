@@ -4,9 +4,9 @@
 
 @section('content')
 
-<section id="petugas" class="content-section">
+<section id="aduan" class="content-section">
 
-    <div id="petugas-content">
+    <div id="aduan-content">
         <div class="section-heading">
             <h1>Daftar<br><em>Petugas</em></h1>
             <p>Lihat daftar petugas di sini.
@@ -20,7 +20,7 @@
             </div>
             @endif
             <div class="mb-2">
-                <a href="/petugas_create" class="btn btn-outline-danger">Add New</a>
+                <a href="/petugas_create" class="btn btn-outline-danger mb-3" style="float: left">Tambah</a>
             </div>
             <table class="table table-bordered">
                 <thead class="table-dark">

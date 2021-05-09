@@ -55,19 +55,6 @@ class AuthController extends Controller
             Session::flash('error', 'Email atau password salah');
             return redirect('login');
         }
-        // $data = [
-        //     'email' => $request->input('email'),
-        //     'password' => Hash::make($request->password),
-        // ];
-
-        // Auth::attempt($data);
-        // if (Auth::check()) {
-        //     return redirect()->route('home');
-        // } else {
-        //     Session::flash('error', 'Invalid Email or Password');
-        //     return redirect()->route('login');
-        // }
-
 
     }
 

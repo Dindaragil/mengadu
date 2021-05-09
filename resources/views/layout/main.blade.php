@@ -47,10 +47,10 @@ https://templatemo.com/tm-518-sentra
                     <li><a href="{{url('/aduan_create')}}">Tulis Pengaduan</a></li>
                     <li><a href="{{url('/aduan')}}">Daftar Pengaduan</a></li>
                     <li><a href="{{url('/petugas')}}">Daftar Petugas</a></li>
-                    <li><a href="#featured">Featured</a></li>
-                    <li><a href="#projects">Recent Projects</a></li>
-                    <li><a href="#video">Presentation</a></li>
-                    <li><a href="#blog">Blog Entries</a></li>
+                    <li><a href="{{url('/user')}}">Daftar User</a></li>
+                    <li><a href="{{url('/admin')}}">Daftar Admin</a></li>
+                    <li><a href="{{ route('logout') }}" class="menu" onclick="return confirm('Apakah anda yakin?')">Keluar</a></li>
+
                 </ul>
             </div>
         </div>
@@ -75,19 +75,31 @@ https://templatemo.com/tm-518-sentra
                     </a>
                 </li>
                 <li>
-                    <a href="{{url('/aduan')}}" class="menu">
-                        <span class="circle"></span>
-                        Daftar Pengaduan
-                    </a>
-                </li>
-                <li>
                     <a href="{{url('/petugas')}}" class="menu">
                         <span class="circle"></span>
                         Daftar Petugas
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('logout') }}" class="menu" onclick="return confirm('Are you Sure?')">
+                    <a href="{{url('/aduan')}}" class="menu">
+                        <span class="circle"></span>
+                        Daftar Pengaduan
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('/admin')}}" class="menu">
+                        <span class="circle"></span>
+                        Daftar Admin
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url('/user')}}" class="menu">
+                        <span class="circle"></span>
+                        Daftar User
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('logout') }}" class="menu" onclick="return confirm('Apakah anda yakin?')">
                         <span class="circle"></span>
                         Keluar
                     </a>

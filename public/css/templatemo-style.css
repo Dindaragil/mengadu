@@ -440,7 +440,7 @@ position: relative;
   border-radius: 0px;
   padding-left: 15px;
   font-size: 13px;
-  color: #aaa;
+  color: rgb(75, 75, 75);
   background-color: #f4f4f4;
   border: 1px solid #eee;
   outline: none;
@@ -507,7 +507,7 @@ position: relative;
   border-radius: 0px;
   padding-left: 15px;
   font-size: 13px;
-  color: #aaa;
+  color: rgb(75, 75, 75);
   background-color: #f4f4f4;
   border: 1px solid #eee;
   outline: none;
@@ -561,62 +561,6 @@ position: relative;
 
 }
 
-/* petugas */
-#petugas table {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.25px;
-
-  }
-  #petugas a {
-    font-size: 13px;
-    font-weight: 600;
-    color: #9d0214;
-    letter-spacing: 0.25px;
-    text-decoration: none;
-    transition: all 0.3s;
-    height: 30px;
-    line-height: 30px;
-    display: inline-block;
-    padding: 0px 15px;
-  }
-
-  #petugas a .create{
-    font-size: 13px;
-    font-weight: 600;
-    color: #9d0214;
-    letter-spacing: 0.25px;
-    text-decoration: none;
-    transition: all 0.3s;
-    height: 30px;
-    line-height: 30px;
-    display: inline-block;
-    padding: 0px 15px;
-  }
-
-  #petugas a:hover {
-    color: #fff;
-    background-color: #9d0214;
-
-  }
-  #petugas button.btn.delete {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.25px;
-    text-decoration: none;
-    transition: all 0.3s;
-    height: 30px;
-    width: 80px;
-    display: inline-block;
-    padding: 0px 15px;
-    background-color: #9d0214;
-    color: #fff;
-  }
-
-  #petugas button.delete:hover {
-    background-color: #fff;
-    color: #9d0214;
-  }
 
 
 /* aduan */
@@ -1147,7 +1091,7 @@ text-align: left;
   border-radius: 0px;
   padding-left: 15px;
   font-size: 13px;
-  color: #aaa;
+  color: rgb(75, 75, 75);
   background-color: #f4f4f4;
   border: 1px solid #eee;
   outline: none;

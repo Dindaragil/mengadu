@@ -29,12 +29,7 @@
             </div>
             @endif
                             <div class="row">
-                            <div class="col-md-12">
-                                <label for="id_user" class="h4">ID User</label>
-                                <fieldset>
-                                    <input name="id_user" type="text" class="form-control" id="nik" value="{{Session::get('id')}}" readonly>
-                                  </fieldset>
-                                </div>
+                                <input name="id_user" type="hidden" class="form-control" id="nik" value="{{Session::get('id')}}">
                                 <div class="col-md-6">
                                  <label for="tanggal" class="h4">Tanggal</label>
                                   <fieldset>
